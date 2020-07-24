@@ -35,7 +35,7 @@ case object Nan extends HumidityValue {
 
 object HumidityValue {
 
-  val range = Range(1, 100)
+  private val range = Range(1, 100)
 
   def apply(value: String): HumidityValue = value match {
     case Int(v) if range.contains(v) => Humidity(v)

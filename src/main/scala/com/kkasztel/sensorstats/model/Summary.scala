@@ -10,6 +10,6 @@ case class Summary(sensorResults: Seq[SensorResult], fileCount: Int) {
        |Sensors with highest avg humidity:
 
        |sensor-id,min,avg,max
-       |${sensorResults.mkString("\n")}""".stripMargin
+       |${sensorResults.sorted(Ordering[SensorResult].reverse).mkString("\n")}""".stripMargin
   }
 }
