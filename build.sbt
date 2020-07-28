@@ -13,5 +13,6 @@ scalacOptions ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "3.2.0" % Test withSources() withJavadoc()
+  "org.scalatest" %% "scalatest" % "3.2.0" % Test withSources() withJavadoc(),
+  "org.scalatestplus" %% "scalacheck-1-14" % "3.2.0.0" % Test withSources() withJavadoc()
 )
