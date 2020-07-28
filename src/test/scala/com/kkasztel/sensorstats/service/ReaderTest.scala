@@ -11,7 +11,7 @@ class ReaderTest extends AnyFlatSpec {
       NonEmptyResult("s2", Humidity(78), Humidity(88), 246, 3, 0),
       NonEmptyResult("s3", Nan, Nan, 0, 1, 1)
     ), 2)) {
-      Reader.read("sample", DataProcessor.processSource, DataProcessor.foldResults)
+      Reader.read("src/test/resources/sample", DataProcessor.processSource, DataProcessor.foldResults)
     }
   }
 
