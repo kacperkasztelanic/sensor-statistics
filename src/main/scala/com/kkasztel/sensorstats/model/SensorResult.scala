@@ -1,6 +1,6 @@
 package com.kkasztel.sensorstats.model
 
-sealed trait SensorResult extends Comparable[SensorResult] {
+sealed trait SensorResult extends Ordered[SensorResult] {
 
   def avg(): HumidityValue
 
@@ -30,7 +30,7 @@ sealed trait SensorResult extends Comparable[SensorResult] {
     case _ => EmptyResult
   }
 
-  override def compareTo(o: SensorResult): Int = this.avg().compareTo(o.avg())
+  override def compare(o: SensorResult): Int = this.avg().compareTo(o.avg())
 }
 
 case class NonEmptyResult(sensor: String, min: HumidityValue, max: HumidityValue, sum: Int, count: Int, errors: Int) extends SensorResult {
@@ -65,6 +65,4 @@ object NonEmptyResult {
     case v: Humidity => NonEmptyResult(sensor, v, v, v.value, 1, 0)
     case _ => NonEmptyResult(sensor, value, value, 0, 1, 1)
   }
-
-  def empty(sensor: String): NonEmptyResult = NonEmptyResult(sensor, Nan, Nan, 0, 0, 0)
 }

@@ -2,7 +2,7 @@ package com.kkasztel.sensorstats.model
 
 import scala.util.Try
 
-sealed trait HumidityValue extends Comparable[HumidityValue] {
+sealed trait HumidityValue extends Ordered[HumidityValue] {
 
   def max(o: HumidityValue): HumidityValue = extreme(o, _.max(_))
 
@@ -15,7 +15,7 @@ sealed trait HumidityValue extends Comparable[HumidityValue] {
     case _ => Nan
   }
 
-  override def compareTo(o: HumidityValue): Int = (this, o) match {
+  override def compare(o: HumidityValue): Int = (this, o) match {
     case (a: Humidity, b: Humidity) => a.value.compareTo(b.value)
     case (_: Humidity, Nan) => 1
     case (Nan, _: Humidity) => -1
